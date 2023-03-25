@@ -2,7 +2,7 @@ import matplotlib
 #matplotlib.use('Agg')
 
 import sys
-sys.path.insert(0,'/Users/atheisen/Code/sandbox/ACT')
+#sys.path.insert(0,'/Users/atheisen/Code/sandbox/ACT')
 
 import act
 import glob
@@ -29,7 +29,7 @@ if len(files) == 0:
 #Read in MET data to Standard Object
 aeri = act.io.armfiles.read_netcdf(files)
 aeri = act.retrievals.aeri.aeri2irt(aeri)
-
+print(aeri.attrs['act_history'])
 
 #Specify datastream and date range for MET data
 datastream = 'sgpirtE13.b1'
@@ -40,6 +40,7 @@ if len(files) == 0:
     files = glob.glob(''.join(['./',datastream,'/*201902*cdf']))
 #Read in MET data to Standard Object
 irt = act.io.armfiles.read_netcdf(files)
+
 
 #Display data using plotting methods
 new = {'sgpaerich1C1.b1': aeri, 'sgpirtC1.b1': irt}

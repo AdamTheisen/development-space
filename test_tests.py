@@ -11,6 +11,9 @@ import act.tests.test_qc as tq
 import act.tests.test_discovery as td
 import matplotlib.pyplot as plt
 
+tu.test_adjust_timestamp()
+#tr.test_calculate_heffter_pbl()
+#tr.test_calculate_pbl_liu_liang()
 #ti.test_read_psl_fmcw_moment()
 #td.test_airnow()
 #tq.test_qc_flag_description()
@@ -21,7 +24,6 @@ import matplotlib.pyplot as plt
 #tr.test_sp2_psds()
 #tp.test_time_plot2()
 #tq.test_qcfilter()
-#tr.test_calculate_pbl_liu_liang()
 #ti.test_read_psl_wind_profiler()
 #tp.test_multi_skewt_plot()
 #tu.test_height_adjusted_pressure()
@@ -41,7 +43,7 @@ import matplotlib.pyplot as plt
 #tu.test_calculate_dqr_times()
 #tu.test_get_sunrise_sunset_noon()
 #tp.test_wind_rose()
-td.test_get_armfile()
+#td.test_get_armfile()
 #tq.test_arm_qc()
 
 #tr.test_calculate_sirs_variable()
