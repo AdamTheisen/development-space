@@ -15,12 +15,13 @@ token = data['token']
 
 #Specify datastream and date range for KAZR data
 site = 'sgp'
-startdate = '2022-08-15'
-enddate = '2022-08-15'
+startdate = '2022-07-01'
+enddate = '2022-07-07'
 
 sdate = ''.join(startdate.split('-'))
 edate = ''.join(enddate.split('-'))
 
-
-datastream = 'guckazrcfrgeM1.a1'
-result = act.discovery.download_data(username, token, datastream, startdate, enddate)
+datastream = 'nsamawsC1.b1'
+data_dir = './Data/' + datastream
+data_dir = './chat_AI_tests/data/' + datastream
+result = act.discovery.download_data(username, token, datastream, startdate, enddate, output=data_dir)

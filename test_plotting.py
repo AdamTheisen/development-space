@@ -7,6 +7,8 @@
 """
 Time Series Visualization of a Soil Moisture Parameter with Precipitation Overlay
 """
+import sys
+#sys.path.insert(0,'/Users/atheisen/Code/sandbox/ACT')
 import act
 import matplotlib.pyplot as plt
 import json
@@ -15,11 +17,16 @@ import numpy as np
 from datetime import datetime
 
 #Read files into data objects
-obj = act.io.armfiles.read_netcdf(act.tests.sample_files.EXAMPLE_CEIL1)
-print(dir(obj))
-
-display = act.plotting.TimeSeriesDisplay(obj)
-display.plot('backscatter',force_line_plot=True)
+files = glob.glob('./Data/sgpmetE13.b1/*202*')
+files.sort()
+obj = act.io.armfiles.read_netcdf(files)
+display = act.plotting.TimeSeriesDisplay(obj, subplot_shape=(4, 3))
+groupby = display.group_by('month')
+groupby.plot_group('plot', None, field='temp_mean', marker=' ')
+for ax1 in groupby.display.axes:
+    for ax2 in ax1:
+        ax2.set_ylim([-30, 50])
+plt.subplots_adjust(hspace=0.25, top=0.95, bottom=0.05, left=0.05, right=0.95)
 plt.show()
 
 ##Plot data
