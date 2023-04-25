@@ -20,17 +20,15 @@ ds2 = 'sgppblhtsonde1mcfarlC1.c1'
 ds3 = 'sgpceil10mC1.b1'
 sdate = '2021-0'
 edate = sdate
-result1 = glob.glob('./Data/'+ds1+'/*'+''.join(sdate.split('-')) + '*')
-result2 = glob.glob('./Data/'+ds2+'/*'+''.join(sdate.split('-')) + '*')
-result3 = glob.glob('./Data/'+ds3+'/*'+''.join(sdate.split('-')) + '*')
+result1 = glob.glob('./'+ds1+'/*'+''.join(sdate.split('-')) + '*')
+result2 = glob.glob('./'+ds2+'/*'+''.join(sdate.split('-')) + '*')
+result3 = glob.glob('./'+ds3+'/*'+''.join(sdate.split('-')) + '*')
 #result1 = act.discovery.download_data(username, token, ds1, sdate, edate)
 #result2 = act.discovery.download_data(username, token, ds2, sdate, edate)
 #result3 = act.discovery.download_data(username, token, ds3, sdate, edate)
 result1 = sorted(result1)
 result2 = sorted(result2)
 result3 = sorted(result3)
-
-print('./Data/'+ds1+'/*'+''.join(sdate.split('-')) + '*')
 
 t1 = []
 pblht = []

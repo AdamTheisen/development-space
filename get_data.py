@@ -15,12 +15,12 @@ token = data['token']
 
 #Specify datastream and date range for KAZR data
 site = 'sgp'
-startdate = '2019-06-01'
-enddate = '2019-06-02'
+startdate = '2022-08-15'
+enddate = '2022-08-15'
 
 sdate = ''.join(startdate.split('-'))
 edate = ''.join(enddate.split('-'))
 
-datastream = 'sgpsebsE14.b1'
-data_dir = './Data/' + datastream
-result = act.discovery.download_data(username, token, datastream, startdate, enddate, output=data_dir)
+
+datastream = 'guckazrcfrgeM1.a1'
+result = act.discovery.download_data(username, token, datastream, startdate, enddate)
