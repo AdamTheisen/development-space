@@ -11,12 +11,17 @@ import act.tests.test_qc as tq
 import act.tests.test_discovery as td
 import matplotlib.pyplot as plt
 
-td.test_get_armfile()
+#ti.test_read_surfrad()
+#td.test_download_surfrad()
+#tp.test_scatter()
+#tq.test_scalar_dqr()
+#tq.test_qctests_dos()
+#td.test_get_armfile()
 #tu.test_adjust_timestamp()
 #tr.test_calculate_heffter_pbl()
 #tr.test_calculate_pbl_liu_liang()
 #ti.test_read_psl_fmcw_moment()
-#td.test_airnow()
+td.test_airnow()
 #tq.test_qc_flag_description()
 #tp.test_plot_datarose()
 #td.test_noaa_psl()

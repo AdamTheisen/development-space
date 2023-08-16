@@ -2,7 +2,8 @@ import act
 import requests
 import json
 
-ds = 'sgpmetE13.b1'
+ds = 'sgpstampE13.b1'
+ds = 'test'
 site = ds[0:3]
 c_start = '2022-05-01'
 c_end = '2022-05-31'

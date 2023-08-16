@@ -7,9 +7,12 @@ import matplotlib.pyplot as plt
 import datetime as dt
 
 # Download NOAA moments data
-#result = act.discovery.download_noaa_psl_data(
-#    site='bck', instrument='Radar FMCW Moment', startdate='20220815'
-#)
+result = act.discovery.download_noaa_psl_data(
+    site='bck', instrument='Radar FMCW Moment',
+    startdate='20220815', enddate='20220820'
+)
+print(result)
+sys.exit()
 
 files = glob.glob('./kps_Radar_FMCW_Moment/kps22227*.raw')
 files.sort()

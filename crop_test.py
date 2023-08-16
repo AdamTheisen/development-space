@@ -13,6 +13,6 @@ arm_type=['Pasture','Pasture','Field to South, Grass','Pasture','Pasture']
 
 fac = [fac[0]]
 for i,f in enumerate(fac):
-    crop = act.discovery.get_CropScape.croptype(lat[i],lon[i],year)
+    crop = act.discovery.get_cropscape.croptype(lat[i],lon[i],year)
 
     print(f,' ',crop,'; ARM: ',arm_type[i])
