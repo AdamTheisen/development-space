@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import glob
 
 # Read in Data
-obj = act.io.armfiles.read_netcdf(glob.glob('./data/sgpmfrsr7nchE11.b1/*'))
+obj = act.io.arm.read_arm_netcdf(glob.glob('./data/sgpmfrsr7nchE11.b1/*'))
 
 # Convert data to cf-standards
 obj.clean.cleanup()

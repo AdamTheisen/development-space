@@ -2,15 +2,24 @@ import sys
 #sys.path.insert(0,'/Users/atheisen/Code/sandbox/ACT')
 import act
 print(act.__file__)
-import act.tests.test_retrievals as tr
-import act.tests.test_utils as tu
-import act.tests.test_correct as tc
-import act.tests.test_io as ti
-import act.tests.test_plotting as tp
-import act.tests.test_qc as tq
-import act.tests.test_discovery as td
+import act.tests.retrievals as tr
+import act.tests.utils as tu
+import act.tests.corrections as tc
+import act.tests.io as ti
+import act.tests.plotting as tp
+import act.tests.qc as tq
+import act.tests.discovery as td
 import matplotlib.pyplot as plt
 
+#from act.tests.plotting.test_skewtdisplay import test_skewt_options
+#from act.tests.utils.test_io_utils import test_generate_movie
+
+test_plot_stripes()
+plt.show()
+#test_generate_movie()
+
+#test_skewt_options()
+#tq.test_get_attr_info()
 #ti.test_read_surfrad()
 #td.test_download_surfrad()
 #tp.test_scatter()
@@ -21,7 +30,7 @@ import matplotlib.pyplot as plt
 #tr.test_calculate_heffter_pbl()
 #tr.test_calculate_pbl_liu_liang()
 #ti.test_read_psl_fmcw_moment()
-td.test_airnow()
+#td.test_airnow()
 #tq.test_qc_flag_description()
 #tp.test_plot_datarose()
 #td.test_noaa_psl()

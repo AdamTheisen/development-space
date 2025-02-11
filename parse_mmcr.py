@@ -1,17 +1,19 @@
+import sys
+#sys.path.insert(0,'/Users/atheisen/Code/sandbox/ACT')
 import glob
 import act
 import xarray as xr
 import matplotlib.pyplot as plt
 
 files = glob.glob('./Data/sgpmmcrmomC1.b1/*2010*')
-
-ds = act.io.armfiles.read_mmcr(files)
+print(files)
+ds = act.io.arm.read_arm_mmcr(files)
 
 display = act.plotting.TimeSeriesDisplay(ds, subplot_shape=(4,), figsize=(8, 10))
-display.plot('Reflectivity_GE', subplot_index=(0,), cmap='act_HomeyerRainbow')
-display.plot('Reflectivity_BL', subplot_index=(1,), cmap='act_HomeyerRainbow')
-display.plot('Reflectivity_CI', subplot_index=(2,), cmap='act_HomeyerRainbow')
-display.plot('Reflectivity_PR', subplot_index=(3,), cmap='act_HomeyerRainbow')
+display.plot('Reflectivity_GE', subplot_index=(0,))
+display.plot('Reflectivity_BL', subplot_index=(1,))
+display.plot('Reflectivity_CI', subplot_index=(2,))
+display.plot('Reflectivity_PR', subplot_index=(3,))
 plt.show()
 
 

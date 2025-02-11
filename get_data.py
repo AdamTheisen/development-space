@@ -14,12 +14,12 @@ username = data['username']
 token = data['token']
 
 #Specify datastream and date range for KAZR data
-startdate = '2022-5-16'
-enddate = '2022-05-17'
+startdate = '2024-12-01'
+enddate = '2024-12-10'
 
 sdate = ''.join(startdate.split('-'))
 edate = ''.join(enddate.split('-'))
 
-datastream = 'houaosapsM1.b1'
+datastream = 'bnfsirsM1.b1'
 data_dir = './data/' + datastream
-result = act.discovery.download_data(username, token, datastream, startdate, enddate, output=data_dir)
+result = act.discovery.download_arm_data(username, token, datastream, startdate, enddate, output=data_dir)

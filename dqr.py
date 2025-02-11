@@ -15,24 +15,20 @@ username = data['username']
 token = data['token']
 
 #Specify datastream and date range for KAZR data
-site = 'sgp'
-ds = site+'30ebbrE13.b1'
-startdate = '2020-01-27'
-enddate = '2020-01-29'
+site = 'anx'
+ds = site+'metM1.b1'
+startdate = '2019-06-01'
+enddate = '2020-06-30'
 
 sdate = ''.join(startdate.split('-'))
 edate = ''.join(enddate.split('-'))
 
-#Download KAZR Data
-files = glob.glob(''.join(['./',ds,'/*nc']))
-if len(files) == 0:
-    act.discovery.download_data(username, token, ds, startdate, enddate)
-    files = glob.glob(''.join(['./',ds,'/*nc']))
+files = glob.glob(''.join(['./data/',ds,'/*cdf']))
 
 # Read in KAZR data to Standard Object
-obj = act.io.armfiles.read_netcdf(files)
+obj = act.io.arm.read_arm_netcdf(files)
 
-variable = 'latent_heat_flux'
+variable = 'temp_mean'
 assessment = 'incorrect,suspect'
 obj = act.qc.arm.add_dqr_to_qc(obj, variable=variable)
 
@@ -42,8 +38,9 @@ display = act.plotting.TimeSeriesDisplay(obj,figsize=(15,10),subplot_shape=(2,))
 display.plot(variable,subplot_index=(0,))
 # Plot QC data
 display.qc_flag_block_plot(variable,subplot_index=(1,))
+#plt.show()
 # Save figure
 plt.savefig('./images/dqr_qc.png')
 plt.clf()
 
-obj.close()
+#obj.close()

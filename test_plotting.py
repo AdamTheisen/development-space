@@ -15,34 +15,19 @@ import json
 import glob
 import numpy as np
 from datetime import datetime
+import xarray as xr
+import matplotlib.pyplot as plt
+import act
 
-#Read files into data objects
-files = glob.glob('./Data/sgpmetE13.b1/*202*')
-files.sort()
-obj = act.io.armfiles.read_netcdf(files)
-display = act.plotting.TimeSeriesDisplay(obj, subplot_shape=(4, 3))
-groupby = display.group_by('month')
-groupby.plot_group('plot', None, field='temp_mean', marker=' ')
-for ax1 in groupby.display.axes:
-    for ax2 in ax1:
-        ax2.set_ylim([-30, 50])
-plt.subplots_adjust(hspace=0.25, top=0.95, bottom=0.05, left=0.05, right=0.95)
+file = glob.glob('/Users/atheisen/Code/ARM-Climatologies/data/sgpmetE13.b1/*b1.2016*.cdf')
+ds = act.io.read_arm_netcdf(file, coords='minimal')
+print(ds['qc_temp_mean'].values)
+#ds = ds.resample(time='1min').nearest()
+ds = act.qc.arm.add_dqr_to_qc(ds)
+ds = ds.where(ds['qc_temp_mean'] == 0)
+
+# Create Plot Display
+display = act.plotting.TimeSeriesDisplay(ds, figsize=(16,6))
+
+display.plot('temp_mean')
 plt.show()
-
-##Plot data
-#fig, ax1 = plt.subplots()
-#ax2 = ax1.twinx()
-#plot_sm = ax1.plot(stamp_data.time, stamp_data.real_dielectric_permittivity_west)
-#plot_precip = ax2.fill_between(datetime_array, stamppcp_data.precip_accumulated, color='gray', alpha=0.2, label='precip')
-#plt.autoscale(enable=True, axis='x', tight=True)
-#ax2.set_ylim(0,)
-#plt.setp(ax1.get_xticklabels(), rotation=30, horizontalalignment='right')
-#ax1.set_xlabel('Time', labelpad=20)
-#ax1.set_ylabel('Moisture', labelpad=20)
-#ax2.set_ylabel('Precipitation (mm)', rotation=270, labelpad=20)
-#plt.title('Soil Moisture and Precipitation')
-#ax1.legend(plot_sm, ('5cm', '10cm', '20cm', '50cm', '100cm'), bbox_to_anchor=(-0.1,0.4))
-#ax2.legend(bbox_to_anchor=(1.3,0.1))
-#plt.show()
-
-obj.close()

@@ -12,28 +12,29 @@ username = data['username']
 token = data['token']
 
 #Specify datastream and date range for KAZR data
-site = 'ena'
-kazr_ds = site+'sondewnpnC1.b1'
-startdate = '2021-12-12'
-enddate = '2021-12-12'
+site = 'sgp'
+datastream = site+'sondewnpnC1.b1'
+startdate = '2023-06-21'
+enddate = '2023-06-21'
 
 sdate = ''.join(startdate.split('-'))
 edate = ''.join(enddate.split('-'))
 
 #Download SONDE Data
-files = glob.glob(''.join(['./',kazr_ds,'/*'+sdate+'*cdf']))
+files = glob.glob(''.join(['./',datastream,'/*'+sdate+'*cdf']))
 if len(files) == 0:
-    act.discovery.download_data(username, token, kazr_ds, startdate, enddate)
-    files = glob.glob(''.join(['./',kazr_ds,'/*'+sdate+'*cdf']))
+    act.discovery.download_arm_data(username, token, datastream, startdate, enddate)
+    files = glob.glob(''.join(['./',datastream,'/*'+sdate+'*cdf']))
 
 test = {}
 for i, f in enumerate(files):
     time = f.split('.')[-2]
-    sonde_ds = act.io.armfiles.read_netcdf(f)
+    sonde_ds = act.io.arm.read_arm_netcdf(f)
     test.update({time: sonde_ds})
 #skewt = act.plotting.SkewTDisplay(test, figsize=(6,8),subplot_shape=(2,2))
 skewt = act.plotting.SkewTDisplay(sonde_ds, figsize=(8,10))#,subplot_shape=(2,2))
-skewt.plot_from_u_and_v('u_wind', 'v_wind', 'pres', 'tdry', 'dp')
+skewt.plot_from_u_and_v('u_wind', 'v_wind', 'pres', 'tdry', 'dp', plot_dry_adiabats=False, plot_moist_adiabats=False, show_parcel=False, 
+                        plot_mixing_lines=False, shade_cape=False, shade_cin=False)
 plt.show()
 sys.exit()
 

@@ -1,15 +1,17 @@
 import act
-import glob
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+import xarray as xr
+import glob
+import os
+from act.plotting import TimeSeriesDisplay, WindRoseDisplay
+from act.tests import sample_files
+from act.utils.data_utils import accumulate_precip
 
-sonde_ds = act.io.armfiles.read_netcdf(
-    act.tests.sample_files.EXAMPLE_TWP_SONDE_WILDCARD)
 
-WindDisplay = act.plotting.WindRoseDisplay(sonde_ds, figsize=(10, 10))
-WindDisplay.plot('deg', 'wspd',
-                 spd_bins=np.linspace(0, 20, 10), num_dirs=30,
-                 tick_interval=2, cmap='viridis')
-
-plt.tight_layout()
-plt.show()
+if __name__ == "__main__":
+    ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_CEIL1)
+    display = TimeSeriesDisplay(ds)
+    display.plot('backscatter', y_rng=[0, 5000], use_var_for_y='range')
+    plt.show()
