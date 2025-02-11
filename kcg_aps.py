@@ -1,3 +1,4 @@
+import xarray as xr
 import glob
 import act
 import matplotlib.pyplot as plt
@@ -9,6 +10,12 @@ files.sort()
 
 # Read in with ACT
 ds = act.io.read_arm_netcdf(files)
+
+# an alternative is to use xarray which is what ACT is built on
+# This shouldn't affect the APS data but there are quirks with
+# other ARM datasets in how we set the time units which reqiures
+# some additional work to get it correct.
+#ds = xr.open_mfdataset(files)
 
 # Plot up the data
 title = 'APS Number Size Distribution'
